@@ -1,0 +1,32 @@
+
+
+<div class="container">
+  <h2>Welcome {{ id }} </h2>
+  <button class="btn btn-primary" (click)="onNewTask()">New Task</button>
+  <button class="btn btn-primary"  (click)="onsearch()">Search</button>
+  <button class="btn btn-primary" (click)="onSort()">Sort</button>
+  <p> Task List</p>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Detail</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+    
+      <tr *ngFor="let list of employeeList" class= "{{ list.priority }}">
+        <td>{{ list.taskname }}</td>
+        <td>{{ list.taskdetail }}</td>
+        <td>{{ list.priority }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

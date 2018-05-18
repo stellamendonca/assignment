@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-sm-4" style="align-content: center">
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+      <label>Sort by</label>
+      <select class="form-control" id="sort" name="sort" ngModel (change)="onPrior()">
+        <option value="name">Name</option>
+        <option value="Priority">Priority</option>
+
+      </select>
+      <br>
+
+      <label *ngIf="hide==true">Select Priority</label>
+      <select *ngIf="hide==true" class="form-control" id="filter" name="filter" name="search">
+
+        <option value="d">Default</option>
+        <option value="u">Urgent</option>
+        <option value="h">High</option>
+        <option value="m">Medium</option>
+        <option value="l">Low</option>
+      </select>
+
+      <br>
+
+      <button type="submit" class="btn btn-primary">Sort</button>
+    </form>
+  </div>
+
+</div>
+
+<div *ngIf="hidee===false" >
+  <h4>Sorted list</h4>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Task Detail</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+    
+    
+        <tbody>
+        
+          <tr  *ngFor="let list of employeeList | orderBy: 'taskname'" class= "{{ list.priority }}">
+            <td >{{ list.taskname  }}</td>
+            <td >{{ list.taskdetail }}</td>
+            <td >{{ list.priority }}</td>
+          </tr>
+
+          <tr  *ngFor="let list of employeeListt" class= "{{ list.priority }}">
+            <td *ngIf="hidee==true">{{list.taskname}}</td>
+            <td *ngIf="hidee==true">{{list.taskdetail}}</td>
+            <td *ngIf="hidee==true">{{list.priority}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+</div>

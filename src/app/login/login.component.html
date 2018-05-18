@@ -1,0 +1,16 @@
+<div class="bgBody">
+	<div class="loginBox">
+		<img src="assets/user.png" class="user">
+			<h2>Log In Here</h2>
+				<form (ngSubmit) = "onClickSubmit()" #data = "ngForm" 
+				>
+					<p>Email</p>
+					<input type="text" name="username"
+					 placeholder="Enter Email" class="form-control" ngModel required >
+					<p>Password</p>
+					<input type="password" name="password" placeholder="••••••" class="form-control" ngModel required>
+					<button type="submit" name="" value="Sign In">Sign in</button>
+					<a>Forget Password</a>
+		</form>
+	</div>
+</div>

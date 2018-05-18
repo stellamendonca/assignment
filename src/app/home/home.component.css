@@ -1,0 +1,28 @@
+ 
+  .loginBox
+  {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  height: 75%;
+  padding: 30px 30px;
+  box-sizing: border-box;
+  background: rgb(255, 255, 255);
+  }
+  
+  .bgBody
+  {
+  position: absolute; 
+  background: rgba(153, 153, 153, 0.5);
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%; 
+  }
+  #gonnaBeOnTheBottom {
+  position:absolute;
+  bottom:0;
+  padding:15px;
+  margin-bottom: 20px;
+  }
