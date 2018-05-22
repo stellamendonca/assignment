@@ -1,8 +1,10 @@
+import { SortPipe } from './../sort.pipe';
 import { StoreService } from './../storeService.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Employee } from '../employee.model';
 import { OrderModule } from 'ngx-order-pipe';
+
 
 @Component({
   selector: 'app-sort-bar',
@@ -14,11 +16,14 @@ export class SortBarComponent implements OnInit {
   hidee = false;
   sortType = '';
   priority = '';
+  onSub = false;
+  taskpriority = ['Ultra', 'High', 'Normal', 'Low'];
   employeeList: Employee[];
   @ViewChild('f') sortForm: NgForm;
   constructor(private storeService: StoreService) { }
 
-  ngOnInit() {
+  ngOnInit( ) {
+    this.employeeList = this.storeService.employeeList;
   }
 
   onPrior() {
@@ -28,6 +33,7 @@ export class SortBarComponent implements OnInit {
   }
 
   onSubmit() {
+    this.onSub = true;
     this.employeeList = this.storeService.employeeList;
     console.log(this.employeeList);
     this.sortType = this.sortForm.value.sort;

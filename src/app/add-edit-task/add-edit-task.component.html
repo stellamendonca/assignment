@@ -1,3 +1,5 @@
+
+<app-signout></app-signout>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
@@ -14,32 +16,32 @@
               type="text"
               id="taskname"
               class="form-control"
-              ngModel
+              [(ngModel)]="taskname"
               name="taskname"
               required>
           </div>
 
           <div class="form-group">
-              <label for="username">Task Detail</label>
+              <label for="taskdetail">Task Detail</label>
               <input 
                 type="text"
                 id="taskdetail"
                 class="form-control"
-                ngModel
+                [(ngModel)]="taskdetail"
                 name="taskdetail"
                 required>
             </div>
         </div>
 
 
-        <p>Priority {{ asdf }}</p>
-        <div class="radio" *ngFor="let prio of taskpriority">
+        <p>Priority {{ prior }}</p>
+        <div class="radio" *ngFor="let prio of taskpriority let i=index" >
           <label>
             <input
               type="radio"
-              name="asdf"
-              ngModel
-              [value]="prio"
+              name="prior"
+              [(ngModel)]="prior"
+              [value]="i"
               required>
             {{ prio }}
           </label>

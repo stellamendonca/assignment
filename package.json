@@ -26,6 +26,8 @@
     "core-js": "^2.4.1",
     "firebase": "^4.6.1",
     "graphql": "^0.13.2",
+    "ng2-dnd": "^5.0.2",
+    "ngx-draggable-widget": "^1.0.7",
     "ngx-order-pipe": "^2.0.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"

@@ -18,18 +18,21 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
-
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SortBarComponent } from './sort-bar/sort-bar.component';
 import { OrderModule } from 'ngx-order-pipe';
+import { DisplayComponent } from './display/display.component';
+import { SignoutComponent } from './signout/signout.component';
+import { SortPipe } from './sort.pipe';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', canActivate: [AuthloginGuard] , component: HomeComponent },
+  { path: 'display/:index', canActivate: [AuthloginGuard] , component: DisplayComponent },
   { path: 'home/:id', canActivate: [AuthloginGuard] , component: HomeComponent },
   { path: 'addedit', canActivate: [AuthloginGuard] , component: AddEditTaskComponent },
   { path: 'addedit/:id', canActivate: [AuthloginGuard] , component: AddEditTaskComponent },
-  { path: 'search', canActivate: [AuthloginGuard] , component: SearchBarComponent },
+  { path: 'addedit/:id/:index/:key', canActivate: [AuthloginGuard] , component: AddEditTaskComponent },
+
   { path: 'sort', canActivate: [AuthloginGuard] , component: SortBarComponent  },
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: '**', redirectTo: 'login', pathMatch: 'full'}
@@ -40,8 +43,10 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     AddEditTaskComponent,
-    SearchBarComponent,
-    SortBarComponent
+    SortBarComponent,
+    DisplayComponent,
+    SignoutComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,7 @@ const appRoutes: Routes = [
     OrderModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
     ],
   providers: [UserService , HTTPServerService , AuthloginGuard, StoreService],
   bootstrap: [AppComponent]

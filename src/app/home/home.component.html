@@ -1,12 +1,30 @@
+<app-signout></app-signout>
+<br>
+<br>
+
 
 
 <div class="container">
   <h2>Welcome {{ id }} </h2>
-  <button class="btn btn-primary" (click)="onNewTask()">New Task</button>
-  <button class="btn btn-primary"  (click)="onsearch()">Search</button>
-  <button class="btn btn-primary" (click)="onSort()">Sort</button>
-  <p> Task List</p>
+  <div class="container">
+    <div class="row">
+
+      <form (ngSubmit)="onsearch()" #fo="ngForm">
+
+        <input type="text" name="search" id="search" ngModel>
+
+        <button type="submit">search</button>
+        <button (click)="onNewTask()">New Task</button>
+
+        <button (click)="onSort()">Sort</button>
+
+      </form>
+
+    </div>
+  </div>
+
   
+
   <table class="table">
     <thead>
       <tr>
@@ -18,15 +36,26 @@
 
 
     <tbody>
-    
-      <tr *ngFor="let list of employeeList" class= "{{ list.priority }}">
-        <td>{{ list.taskname }}</td>
-        <td>{{ list.taskdetail }}</td>
-        <td>{{ list.priority }}</td>
+
+      <tr *ngFor="let list of employeeList; let i = index" class="{{ list.priority }}">
+
+        <td *ngIf="hide==true" (click)="ondisp(i)" >{{ list.taskname }}</td>
+        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.taskdetail }}</td>
+        <td *ngIf="hide==true" (click)="ondisp(i)">{{ taskpriority[list.priority] }}</td>
+        <td *ngIf="hide==true"> <button class="btn btn-success" (click)="onEdit(i)">Edit</button> 
+          <button class="btn btn-danger" (click)="onDelete(i)">Delete</button></td>
+        
       </tr>
+
+      <tr *ngFor="let list of employeeListt" class="{{ list.priority }}">
+        <td *ngIf="hidee==true">{{list.taskname}}</td>
+        <td *ngIf="hidee==true">{{list.taskdetail}}</td>
+        <td *ngIf="hidee==true">{{taskpriority[list.priority] }}</td>
+      </tr>
+
     </tbody>
   </table>
+
+  
+  
 </div>
-
-
-

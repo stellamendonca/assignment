@@ -1,3 +1,5 @@
+
+<app-signout></app-signout>
 <div class="row">
   <div class="col-sm-4" style="align-content: center">
     <form (ngSubmit)="onSubmit()" #f="ngForm">
@@ -9,7 +11,7 @@
       </select>
       <br>
 
-      <label *ngIf="hide==true">Select Priority</label>
+      <!-- <label *ngIf="hide==true">Select Priority</label>
       <select *ngIf="hide==true" class="form-control" id="filter" name="filter" name="search">
 
         <option value="d">Default</option>
@@ -17,7 +19,7 @@
         <option value="h">High</option>
         <option value="m">Medium</option>
         <option value="l">Low</option>
-      </select>
+      </select> -->
 
       <br>
 
@@ -41,16 +43,16 @@
     
         <tbody>
         
-          <tr  *ngFor="let list of employeeList | orderBy: 'taskname'" class= "{{ list.priority }}">
-            <td >{{ list.taskname  }}</td>
-            <td >{{ list.taskdetail }}</td>
-            <td >{{ list.priority }}</td>
+          <tr  *ngFor="let list of employeeList | sort:'taskname'">
+            <td *ngIf="hide==false && onSub==true">{{ list.taskname  }}</td>
+            <td *ngIf="hide==false && onSub==true">{{ list.taskdetail }}</td>
+            <td *ngIf="hide==false && onSub==true">{{ taskpriority[list.priority] }}</td>
           </tr>
 
-          <tr  *ngFor="let list of employeeListt" class= "{{ list.priority }}">
-            <td *ngIf="hidee==true">{{list.taskname}}</td>
-            <td *ngIf="hidee==true">{{list.taskdetail}}</td>
-            <td *ngIf="hidee==true">{{list.priority}}</td>
+          <tr  *ngFor="let list of employeeList |sort: 'priority' ">
+            <td *ngIf="hide==true">{{list.taskname}}</td>
+            <td *ngIf="hide==true">{{list.taskdetail}}</td>
+            <td *ngIf="hide==true">{{taskpriority[list.priority]}}</td>
           </tr>
 
         </tbody>
