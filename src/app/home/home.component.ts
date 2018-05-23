@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit {
     console.log(formm);
   }
 onsearch() {
+  this.employeeListt = [];
   this.hide = false;
   this.storeService.employeeList = this.employeeList;
 

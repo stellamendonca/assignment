@@ -23,9 +23,11 @@ import { OrderModule } from 'ngx-order-pipe';
 import { DisplayComponent } from './display/display.component';
 import { SignoutComponent } from './signout/signout.component';
 import { SortPipe } from './sort.pipe';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminPageComponent },
   { path: 'home', canActivate: [AuthloginGuard] , component: HomeComponent },
   { path: 'display/:index', canActivate: [AuthloginGuard] , component: DisplayComponent },
   { path: 'home/:id', canActivate: [AuthloginGuard] , component: HomeComponent },
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     SortBarComponent,
     DisplayComponent,
     SignoutComponent,
-    SortPipe
+    SortPipe,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,

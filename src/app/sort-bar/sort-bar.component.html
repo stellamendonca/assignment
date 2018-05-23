@@ -7,19 +7,20 @@
       <select class="form-control" id="sort" name="sort" ngModel (change)="onPrior()">
         <option value="name">Name</option>
         <option value="Priority">Priority</option>
+        <option value="Filter">Filter</option>
 
       </select>
       <br>
 
-      <!-- <label *ngIf="hide==true">Select Priority</label>
-      <select *ngIf="hide==true" class="form-control" id="filter" name="filter" name="search">
+      <label *ngIf="filt==true">Select Filter </label>
+      <select *ngIf="filt==true" class="form-control" id="filterHere" name= "filterHere" [(ngModel)]="filterHere" >
 
-        <option value="d">Default</option>
-        <option value="u">Urgent</option>
-        <option value="h">High</option>
-        <option value="m">Medium</option>
-        <option value="l">Low</option>
-      </select> -->
+        
+        <option value=0>Ultra</option>
+        <option value=1>High</option>
+        <option value=2>Normal</option>
+        <option value=3>Low</option>
+      </select>
 
       <br>
 
@@ -44,16 +45,23 @@
         <tbody>
         
           <tr  *ngFor="let list of employeeList | sort:'taskname'">
-            <td *ngIf="hide==false && onSub==true">{{ list.taskname  }}</td>
-            <td *ngIf="hide==false && onSub==true">{{ list.taskdetail }}</td>
-            <td *ngIf="hide==false && onSub==true">{{ taskpriority[list.priority] }}</td>
+            <td *ngIf="hide==true && onSub==true">{{ list.taskname  }}</td>
+            <td *ngIf="hide==true && onSub==true">{{ list.taskdetail }}</td>
+            <td *ngIf="hide==true && onSub==true">{{ taskpriority[list.priority] }}</td>
           </tr>
 
           <tr  *ngFor="let list of employeeList |sort: 'priority' ">
-            <td *ngIf="hide==true">{{list.taskname}}</td>
-            <td *ngIf="hide==true">{{list.taskdetail}}</td>
-            <td *ngIf="hide==true">{{taskpriority[list.priority]}}</td>
+            <td *ngIf="prior==true  && hide==false  && onSub==true">{{list.taskname}}</td>
+            <td *ngIf="prior==true && hide==false  && onSub==true">{{list.taskdetail}}</td>
+            <td *ngIf="prior==true && hide==false  && onSub==true">{{taskpriority[list.priority]}}</td>
           </tr>
+
+          <tr  *ngFor="let list of employeeList |sort:'filter':filterHere ">
+            <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.taskname}}</td>
+            <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.taskdetail}}</td>
+            <td *ngIf="filt==true  && onSub==true  && onSub==true">{{taskpriority[list.priority]}}</td>
+          </tr>
+
 
         </tbody>
       </table>

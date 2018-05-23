@@ -5,6 +5,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Employee } from './employee.model';
+import { auth } from './employee.model';
 
 @Injectable()
 export class HTTPServerService {
@@ -17,6 +18,11 @@ export class HTTPServerService {
     this.employeeList = this.firebase.list(key);
     return this.employeeList;
   }
+
+  createEmployee(employee: auth, key) {
+    this.employeeList = this.firebase.list(key);
+    this.employeeList.push(employee);
+    }
 
   insertEmployee(employee: Employee, key) {
     this.employeeList = this.firebase.list(key);

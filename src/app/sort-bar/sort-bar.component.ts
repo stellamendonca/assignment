@@ -14,31 +14,49 @@ import { OrderModule } from 'ngx-order-pipe';
 export class SortBarComponent implements OnInit {
   hide = false;
   hidee = false;
+  filt = false;
+  prior = false;
   sortType = '';
-  priority = '';
+  filte = '';
   onSub = false;
   taskpriority = ['Ultra', 'High', 'Normal', 'Low'];
   employeeList: Employee[];
   @ViewChild('f') sortForm: NgForm;
   constructor(private storeService: StoreService) { }
 
-  ngOnInit( ) {
+  ngOnInit() {
     this.employeeList = this.storeService.employeeList;
   }
 
   onPrior() {
     if (this.sortForm.value.sort === 'Priority') {
-      this.hide = true;
+      this.prior = true;
+      this.hide = false;
+      this.filt = false;
     }
+    if (this.sortForm.value.sort === 'Filter') {
+      this.filt = true;
+      this.prior = false;
+      this.hide = false;
+    }
+    if (this.sortForm.value.sort === 'name') {
+      this.hide = true;
+      this.filt = false;
+      this.prior = false;
+    }
+    console.log('in onprior' + this.hide + this.filt + this.hide);
   }
 
   onSubmit() {
+
     this.onSub = true;
     this.employeeList = this.storeService.employeeList;
-    console.log(this.employeeList);
+    // console.log(this.employeeList);
     this.sortType = this.sortForm.value.sort;
-    this.priority = this.sortForm.value.filter;
-    console.log(this.sortType);
+    this.filte = this.sortForm.value.filter;
+    // console.log(this.sortType);
+   // console.log('hiiiiiiiii');
+   // console.log('this is hide' + this.hide);
   }
 
 }

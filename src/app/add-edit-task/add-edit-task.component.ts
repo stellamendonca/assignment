@@ -29,6 +29,9 @@ export class AddEditTaskComponent {
       this.taskname = this.storeService.employeeList[this.index].taskname;
       this.taskdetail = this.storeService.employeeList[this.index].taskdetail;
       this.prior = this.storeService.employeeList[this.index].priority;
+      this.startDate = this.storeService.employeeList[this.index].startDate;
+      this.duedate = this.storeService.employeeList[this.index].duedate;
+      this.taskassignedby = this.storeService.employeeList[this.index].taskassignedby;
     }
   }
   @ViewChild('f') signupForm: NgForm;
@@ -36,7 +39,11 @@ export class AddEditTaskComponent {
   answer = '';
   taskpriority = ['Ultra', 'High', 'Normal', 'Low'];
   taskdetail = '';
-  prior = '';
+  prior;
+  startDate;
+  duedate;
+  taskassignedby;
+  dateAlert = false;
   user = {
     taskname: '',
     taskdetail: '',
@@ -77,7 +84,10 @@ export class AddEditTaskComponent {
       this.submitted = true;
       this.user.taskname = this.signupForm.value.userData.taskname;
       this.user.taskdetail = this.signupForm.value.userData.taskdetail;
+      this.user.taskassignedby = this.signupForm.value.taskassignedby;
       this.user.priority = this.signupForm.value.prior;
+      this.user.startDate = this.signupForm.value.startDate;
+      this.user.duedate = this.signupForm.value.duedate;
       this.senddata.insertEmployee(this.user, this.id);
       this.signupForm.reset();
       // this.user.taskname = '';
@@ -87,9 +97,21 @@ export class AddEditTaskComponent {
     } else {
       this.user.taskname = this.signupForm.value.userData.taskname;
       this.user.taskdetail = this.signupForm.value.userData.taskdetail;
+      this.user.taskassignedby = this.signupForm.value.userData.taskassignedby;
       this.user.priority = this.signupForm.value.prior;
+      this.user.startDate = this.signupForm.value.startDate;
+      this.user.duedate = this.signupForm.value.duedate;
       this.senddata.updateEmployee(this.user, this.key, this.id);
       this.signupForm.reset();
+    }
+  }
+
+
+  onDate() {
+    if (this.startDate > this.duedate) {
+      this.dateAlert = true;
+    } else {
+      this.dateAlert = false;
     }
   }
 }

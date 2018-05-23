@@ -18,7 +18,12 @@
               class="form-control"
               [(ngModel)]="taskname"
               name="taskname"
-              required>
+              required
+              #tasknam="ngModel"
+              >
+              <span class="help-block" style="color:red"
+              *ngIf="!tasknam.valid && tasknam.touched">
+              please enter a taskname!</span>
           </div>
 
           <div class="form-group">
@@ -29,8 +34,46 @@
                 class="form-control"
                 [(ngModel)]="taskdetail"
                 name="taskdetail"
-                required>
+                required
+                #taskdet="ngModel">
+                <span class="help-block" style="color:red"
+              *ngIf="!taskdet.valid && taskdet.touched">
+              please enter the taskdetail!</span>
             </div>
+        </div>
+
+        <div class="form-group">
+          <label >Assigned By</label>
+          <div >
+            <input type="text" class="form-control form-control-sm" id="taskassignedby"
+            ngModel name="taskassignedby" required
+            [(ngModel)]="taskassignedby">
+          </div>
+        </div>
+
+
+
+        <div class="form-group row">
+          <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Start Date</label>
+          <div class="col-sm-9">
+            <input type="date" class="form-control form-control-sm" id="startDate" (change)="onDate()"
+            id="startDate" name="startDate" ngModel
+            [(ngModel)]="startDate">
+          </div>
+         
+        </div>
+
+        <div class="form-group row">
+          <label for="colFormLabelSm" 
+          class="col-sm-3 col-form-label col-form-label-sm">Due Date</label>
+          <div class="col-sm-9">
+            <input type="date" class="form-control form-control-sm" id="duedate" (change)="onDate()"
+            id="duedate" name="duedate" ngModel
+            [(ngModel)]="duedate">
+          </div>
+          <span class="help-block" style="color:red"
+          *ngIf="dateAlert===true">
+          please enter the valid date!</span>
         </div>
 
 
@@ -42,14 +85,21 @@
               name="prior"
               [(ngModel)]="prior"
               [value]="i"
-              required>
+              required
+              #priori="ngModel">
             {{ prio }}
           </label>
+          <span class="help-block" 
+          *ngIf="!priori.valid && priori.touched">
+          please select a priority!</span>
         </div>
+
+
         <button
           class="btn btn-primary"
           type="submit"
-          >Submit</button>
+          [disabled]="!f.valid">Submit
+        </button>
 
           
       </form>
@@ -61,8 +111,8 @@
       <h3>Your Data</h3>
       <p>Task Name : {{ user.taskname }}</p>
       <p>Task Detail {{ user.taskdetail }}</p>
-      <p>Answer: {{ user.date }}</p>
-      <p>Gender: {{ user.priority }}</p>
+      <p>Start date: {{ user.startDate }}</p>
+      <p>priority: {{ user.priority }}</p>
     </div>
   </div>
 </div>

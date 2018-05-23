@@ -30,17 +30,23 @@
       <tr>
         <th>Task Name</th>
         <th>Task Detail</th>
+        <th>Assigned By </th>
+        <th>Start Date</th>
+        <th>Due Date</th>
         <th>Priority</th>
       </tr>
     </thead>
 
 
-    <tbody>
+    <tbody class="contain">
 
       <tr *ngFor="let list of employeeList; let i = index" class="{{ list.priority }}">
 
         <td *ngIf="hide==true" (click)="ondisp(i)" >{{ list.taskname }}</td>
         <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.taskdetail }}</td>
+        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.taskassignedby }}</td>
+        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.startDate }}</td>
+        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.duedate }}</td>
         <td *ngIf="hide==true" (click)="ondisp(i)">{{ taskpriority[list.priority] }}</td>
         <td *ngIf="hide==true"> <button class="btn btn-success" (click)="onEdit(i)">Edit</button> 
           <button class="btn btn-danger" (click)="onDelete(i)">Delete</button></td>
@@ -50,7 +56,13 @@
       <tr *ngFor="let list of employeeListt" class="{{ list.priority }}">
         <td *ngIf="hidee==true">{{list.taskname}}</td>
         <td *ngIf="hidee==true">{{list.taskdetail}}</td>
+        <td *ngIf="hidee==true">{{list.taskassignedby}}</td>
+        
+        <td *ngIf="hidee==true">{{list.startDate}}</td>
+        <td *ngIf="hidee==true">{{list.duedate}}</td>
         <td *ngIf="hidee==true">{{taskpriority[list.priority] }}</td>
+        
+        
       </tr>
 
     </tbody>
