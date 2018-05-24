@@ -24,18 +24,20 @@ import { DisplayComponent } from './display/display.component';
 import { SignoutComponent } from './signout/signout.component';
 import { SortPipe } from './sort.pipe';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: LoginPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'home', canActivate: [AuthloginGuard] , component: HomeComponent },
-  { path: 'display/:index', canActivate: [AuthloginGuard] , component: DisplayComponent },
+  { path: 'display/:id/:index', canActivate: [AuthloginGuard] , component: DisplayComponent },
   { path: 'home/:id', canActivate: [AuthloginGuard] , component: HomeComponent },
   { path: 'addedit', canActivate: [AuthloginGuard] , component: AddEditTaskComponent },
   { path: 'addedit/:id', canActivate: [AuthloginGuard] , component: AddEditTaskComponent },
   { path: 'addedit/:id/:index/:key', canActivate: [AuthloginGuard] , component: AddEditTaskComponent },
 
-  { path: 'sort', canActivate: [AuthloginGuard] , component: SortBarComponent  },
+  { path: 'sort/:id', canActivate: [AuthloginGuard] , component: SortBarComponent  },
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: '**', redirectTo: 'login', pathMatch: 'full'}
 ];
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     DisplayComponent,
     SignoutComponent,
     SortPipe,
-    AdminPageComponent
+    AdminPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

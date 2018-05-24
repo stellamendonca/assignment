@@ -1,7 +1,13 @@
 
 <app-signout></app-signout>
+<div style=" position:fixed; right:100px/ ">
+    <button type="button" class="btn btn-default btn-sm" (click)="goback()" >
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Back
+      </button>
+</div>
 <div class="row">
   <div class="col-sm-4" style="align-content: center">
+      
     <form (ngSubmit)="onSubmit()" #f="ngForm">
       <label>Sort by</label>
       <select class="form-control" id="sort" name="sort" ngModel (change)="onPrior()">
@@ -37,6 +43,9 @@
           <tr>
             <th>Task Name</th>
             <th>Task Detail</th>
+            <th>Task Assigned By</th>
+            <th>Start date</th>
+            <th>Due date</th>
             <th>Priority</th>
           </tr>
         </thead>
@@ -47,18 +56,27 @@
           <tr  *ngFor="let list of employeeList | sort:'taskname'">
             <td *ngIf="hide==true && onSub==true">{{ list.taskname  }}</td>
             <td *ngIf="hide==true && onSub==true">{{ list.taskdetail }}</td>
+            <td *ngIf="hide==true && onSub==true">{{ list.taskassignedby }}</td>
+            <td *ngIf="hide==true && onSub==true">{{ list.startDate }}</td>
+            <td *ngIf="hide==true && onSub==true">{{ list.duedate }}</td>
             <td *ngIf="hide==true && onSub==true">{{ taskpriority[list.priority] }}</td>
           </tr>
 
           <tr  *ngFor="let list of employeeList |sort: 'priority' ">
             <td *ngIf="prior==true  && hide==false  && onSub==true">{{list.taskname}}</td>
             <td *ngIf="prior==true && hide==false  && onSub==true">{{list.taskdetail}}</td>
+            <td *ngIf="prior==true && hide==false  && onSub==true">{{list.taskassignedby}}</td>
+            <td *ngIf="prior==true && hide==false  && onSub==true">{{list.startDate}}</td>
+            <td *ngIf="prior==true && hide==false  && onSub==true">{{list.duedate}}</td>
             <td *ngIf="prior==true && hide==false  && onSub==true">{{taskpriority[list.priority]}}</td>
           </tr>
 
           <tr  *ngFor="let list of employeeList |sort:'filter':filterHere ">
             <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.taskname}}</td>
             <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.taskdetail}}</td>
+            <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.taskassignedby}}</td>
+            <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.startDate}}</td>
+            <td *ngIf="filt==true  && onSub==true  && onSub==true">{{list.duedate}}</td>
             <td *ngIf="filt==true  && onSub==true  && onSub==true">{{taskpriority[list.priority]}}</td>
           </tr>
 

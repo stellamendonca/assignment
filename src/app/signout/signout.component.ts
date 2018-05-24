@@ -13,7 +13,7 @@ export class SignoutComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ 
   signOut() {
     this.service.logout();
   }

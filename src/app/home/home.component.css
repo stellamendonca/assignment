@@ -29,7 +29,6 @@
 
 
   .contain{
-    border-style: solid;
-    border-width: 1px;
+   
     -ms-overflow-style : scroll;
   }

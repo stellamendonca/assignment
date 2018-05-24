@@ -7,6 +7,7 @@ export class Employee {
     duedate: string;
     // note: string;
     priority: number;
+    check: boolean;
     // status: string;
 }
 

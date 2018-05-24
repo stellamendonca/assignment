@@ -31,12 +31,19 @@ export class HTTPServerService {
 
   updateEmployee(employee: Employee, key, name) {
     this.employeeList = this.firebase.list(name);
+    console.log('hoiiiiiii');
+    console.log(employee);
+    console.log(key);
     console.log(name);
     this.employeeList.update(key,
       {
         taskname: employee.taskname,
         taskdetail: employee.taskdetail,
-        priority: employee.priority
+        priority: employee.priority,
+        startDate: employee.startDate,
+        duedate : employee.duedate,
+        taskassignedby: employee.taskassignedby,
+        check : employee.check
       });
   }
 

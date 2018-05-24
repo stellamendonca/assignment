@@ -42,13 +42,16 @@
 
       <tr *ngFor="let list of employeeList; let i = index" class="{{ list.priority }}">
 
-        <td *ngIf="hide==true" (click)="ondisp(i)" >{{ list.taskname }}</td>
-        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.taskdetail }}</td>
-        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.taskassignedby }}</td>
-        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.startDate }}</td>
-        <td *ngIf="hide==true" (click)="ondisp(i)">{{ list.duedate }}</td>
-        <td *ngIf="hide==true" (click)="ondisp(i)">{{ taskpriority[list.priority] }}</td>
-        <td *ngIf="hide==true"> <button class="btn btn-success" (click)="onEdit(i)">Edit</button> 
+        <td *ngIf="hide==true && list.check===false "  >
+          <input type="checkbox" id="myCheck" (change)="checkk(i,$event)" 
+          [(ngModel)]="employeeList[i].check">
+          {{ list.taskname }}</td>
+        <td *ngIf="hide==true && list.check===false" (click)="ondisp(i)">{{ list.taskdetail }}</td>
+        <td *ngIf="hide==true && list.check===false" (click)="ondisp(i)">{{ list.taskassignedby }}</td>
+        <td *ngIf="hide==true && list.check===false" (click)="ondisp(i)">{{ list.startDate }}</td>
+        <td *ngIf="hide==true && list.check===false" (click)="ondisp(i)">{{ list.duedate }}</td>
+        <td *ngIf="hide==true && list.check===false" (click)="ondisp(i)">{{ taskpriority[list.priority] }}</td>
+        <td *ngIf="hide==true && list.check===false"> <button class="btn btn-success" (click)="onEdit(i)">Edit</button> 
           <button class="btn btn-danger" (click)="onDelete(i)">Delete</button></td>
         
       </tr>
@@ -62,6 +65,25 @@
         <td *ngIf="hidee==true">{{list.duedate}}</td>
         <td *ngIf="hidee==true">{{taskpriority[list.priority] }}</td>
         
+        
+      </tr>
+<div>
+  <br>
+  <h4 *ngIf="checkVal===true && hidee===false ">Completed Tasks</h4>
+</div>
+      <tr *ngFor="let list of employeeList; let i = index" class="{{ list.priority }}">
+
+        <td *ngIf="hide==true && list.check===true"  >
+          <input type="checkbox" id="myCheck" (change)="checkk(i,$event)" 
+          [(ngModel)]="employeeList[i].check">
+          {{ list.taskname }}</td>
+        <td *ngIf="hide==true && list.check===true" (click)="ondisp(i)">{{ list.taskdetail }}</td>
+        <td *ngIf="hide==true && list.check===true" (click)="ondisp(i)">{{ list.taskassignedby }}</td>
+        <td *ngIf="hide==true && list.check===true" (click)="ondisp(i)">{{ list.startDate }}</td>
+        <td *ngIf="hide==true && list.check===true" (click)="ondisp(i)">{{ list.duedate }}</td>
+        <td *ngIf="hide==true && list.check===true" (click)="ondisp(i)">{{ taskpriority[list.priority] }}</td>
+        <td *ngIf="hide==true && list.check===true"> <button class="btn btn-success" (click)="onEdit(i)">Edit</button> 
+          <button class="btn btn-danger" (click)="onDelete(i)">Delete</button></td>
         
       </tr>
 

@@ -4,7 +4,7 @@ import { StoreService } from './../storeService.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { ActivatedRoute, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, RouterStateSnapshot, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-task',
@@ -18,7 +18,8 @@ export class AddEditTaskComponent {
   employeeList: Employee[];
   key;
   constructor(private senddata: HTTPServerService,
-    private route: ActivatedRoute, private storeService: StoreService) {
+    private route: ActivatedRoute, private storeService: StoreService,
+    private router: Router) {
     this.route.params.subscribe(params => this.id = params.id);
     console.log(this.id);
     this.route.params.subscribe(params => this.index = params.index);
@@ -53,6 +54,7 @@ export class AddEditTaskComponent {
     note: '',
     priority: '',
     status: '',
+    check: false,
   };
   submitted = false;
 
@@ -88,6 +90,7 @@ export class AddEditTaskComponent {
       this.user.priority = this.signupForm.value.prior;
       this.user.startDate = this.signupForm.value.startDate;
       this.user.duedate = this.signupForm.value.duedate;
+      this.user.check = false;
       this.senddata.insertEmployee(this.user, this.id);
       this.signupForm.reset();
       // this.user.taskname = '';
@@ -101,6 +104,7 @@ export class AddEditTaskComponent {
       this.user.priority = this.signupForm.value.prior;
       this.user.startDate = this.signupForm.value.startDate;
       this.user.duedate = this.signupForm.value.duedate;
+      this.user.check = false;
       this.senddata.updateEmployee(this.user, this.key, this.id);
       this.signupForm.reset();
     }
@@ -114,4 +118,10 @@ export class AddEditTaskComponent {
       this.dateAlert = false;
     }
   }
+
+  goback() {
+    this.router.navigate(['home/'+this.id]);
+  }
+
+
 }

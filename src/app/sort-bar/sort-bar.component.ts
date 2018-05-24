@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { SortPipe } from './../sort.pipe';
 import { StoreService } from './../storeService.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -18,11 +19,15 @@ export class SortBarComponent implements OnInit {
   prior = false;
   sortType = '';
   filte = '';
+  id;
   onSub = false;
   taskpriority = ['Ultra', 'High', 'Normal', 'Low'];
   employeeList: Employee[];
   @ViewChild('f') sortForm: NgForm;
-  constructor(private storeService: StoreService) { }
+  constructor(private storeService: StoreService,
+     private router: Router, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => this.id = params.id);
+  }
 
   ngOnInit() {
     this.employeeList = this.storeService.employeeList;
@@ -57,6 +62,10 @@ export class SortBarComponent implements OnInit {
     // console.log(this.sortType);
    // console.log('hiiiiiiiii');
    // console.log('this is hide' + this.hide);
+  }
+
+  goback() {
+    this.router.navigate(['home/' + this.id]);
   }
 
 }

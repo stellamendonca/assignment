@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit {
   name = '';
   i;
   key;
-  priority = '';
+  checkVal: boolean;
+
+  priority: number;
   taskpriority = ['Ultra', 'High', 'Normal', 'Low'];
   id: string;
 
@@ -38,6 +40,7 @@ export class HomeComponent implements OnInit {
         y['$key'] = element.key;
         this.employeeList.push(y as Employee);
         console.log(this.employeeList);
+        this.checkVal = true;
       });
     });
 
@@ -88,55 +91,68 @@ export class HomeComponent implements OnInit {
   onSubmit(formm: NgForm) {
     console.log(formm);
   }
-onsearch() {
-  this.employeeListt = [];
-  this.hide = false;
-  this.storeService.employeeList = this.employeeList;
+  onsearch() {
+    this.employeeListt = [];
+    this.hide = false;
+    this.storeService.employeeList = this.employeeList;
 
-  this.name = this.formmm.value.search;
-  // changehide() {
+    this.name = this.formmm.value.search;
+    // changehide() {
     //   this.priority = this.formm.value.sort;
     //   if (this.priority === 'Priority') {
     //     this.hide = true;
     //   }
     // }
 
-  console.log(this.formmm);
-  console.log(this.name);
-  for (this.i = 0; this.i < this.employeeList.length; this.i++ ) {
+    console.log(this.formmm);
+    console.log(this.name);
+    for (this.i = 0; this.i < this.employeeList.length; this.i++) {
 
-    if ( this.employeeList[this.i].taskname.includes(this.name)) {
-console.log('hi');
-this.hidee = true;
-      this.employeeListt.push(this.employeeList[this.i]) ;
-      console.log(this.employeeListt);
-}
+      if (this.employeeList[this.i].taskname.includes(this.name)) {
+        console.log('hi');
+        this.hidee = true;
+        this.employeeListt.push(this.employeeList[this.i]);
+        console.log(this.employeeListt);
+      }
+    }
   }
-}
 
 
 
-onSort() {
-  this.storeService.employeeList = this.employeeList;
-  this.router.navigate(['/sort'] );
-}
+  onSort() {
+    this.storeService.employeeList = this.employeeList;
+    this.router.navigate(['sort/' + this.id]);
+  }
 
-onEdit(i) {
-  this.key = this.employeeList[i].$key;
-  this.storeService.employeeList = this.employeeList;
-this.router.navigate(['/addedit' + '/' + this.id + '/' + i + '/' + this.key]);
+  onEdit(i) {
+    this.key = this.employeeList[i].$key;
+    this.storeService.employeeList = this.employeeList;
+    this.router.navigate(['/addedit' + '/' + this.id + '/' + i + '/' + this.key]);
 
-}
+  }
 
-onDelete(i) {
+  onDelete(i) {
 
-  this.key = this.employeeList[i].$key;
-  this.employeeService.deleteEmployee(this.key);
-}
+    this.key = this.employeeList[i].$key;
+    this.employeeService.deleteEmployee(this.key);
+  }
 
-ondisp(i) {
-  this.storeService.employeeList = this.employeeList;
-  this.router.navigate(['/display' + '/' + i] );
-}
+  ondisp(i) {
+    this.storeService.employeeList = this.employeeList;
+    this.router.navigate(['/display' + '/' + this.id + '/' + i]);
+  }
 
+  checkk(i, event) {
+    console.log(event.target.checked);
+    this.checkVal = event.target.checked;
+    this.employeeList[i].check = this.checkVal;
+    this.key = this.employeeList[i].$key;
+    console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+    console.log(this.employeeList[i].$key);
+    console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+    console.log('incheck' + this.key + '  ' + this.employeeList[i].check);
+    console.log(this.employeeList);
+    this.employeeService.updateEmployee(this.employeeList[i], this.key, this.id);
+    this.storeService.employeeList = this.employeeList;
+  }
 }

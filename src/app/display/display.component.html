@@ -1,7 +1,15 @@
 
 <app-signout></app-signout>
+<div class="col-xs-12 " style="align-content: flex-start" > 
+  <button type="button" class="btn btn-default btn-sm" (click)="goback()" >
+    <span class="glyphicon glyphicon-circle-arrow-left "></span> Back
+  </button>
+</div>
+
+
 <div class="disp">
   <div class="row">
+      
     <div class="col-xs-7 ">
      <h4>  Task Name: {{ employeeList[index].taskname }}</h4>
      <h4>  Task Detail: {{ employeeList[index].taskdetail }}</h4>
@@ -9,6 +17,8 @@
      <h4>  Start Date: {{ employeeList[index].startDate }}</h4>
      <h4>  Due Date: {{ employeeList[index].duedate }}</h4>
      <h4>  Priority: {{ taskpriority[employeeList[index].priority] }}</h4>
+     <h4  *ngIf="hide">Status: Finished</h4>
+     <h4  *ngIf="employeeList[index].check===false">Status: Pending</h4>
      
      
       <!-- <table class="table">
